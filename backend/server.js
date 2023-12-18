@@ -1,0 +1,37 @@
+const express = require('express');
+const mongoose = require('mongoose');
+const cors = require('cors');
+const bodyParser = require('body-parser');
+const userRouter = require('./routes/LoginSignup');
+const productRouter = require('./routes/ProductRoute');
+const { handleConnectMongoDb } = require('./connection');
+const cookieParser = require('cookie-parser');
+const app = express();
+
+// ENV file
+require("dotenv").config()
+const port =  process.env.PORT
+const uri =  process.env.URI
+
+// middleware
+const corsOptions = {
+  origin:"http://localhost:5173",
+  credentials:true,
+  
+}
+app.use(express.json());
+app.use(cookieParser());
+app.use(bodyParser.json());
+app.use(cors(corsOptions));
+
+// routes
+app.use(userRouter);
+app.use(productRouter)
+
+// Db connection
+handleConnectMongoDb(uri);
+
+
+app.listen(port, () => {
+    console.log(`Server is running on port: ${port}`);
+  });
