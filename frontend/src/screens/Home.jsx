@@ -4,7 +4,7 @@ import Hero from '../components/Hero';
 
 import CategoryIcon from '../components/CategoryIcon';
 import Footer from '../components/Footer';
-import Allproducts from '../components/Allproducts';
+import AllProducts from '../components/Allproducts';
 import NavBar from '../components/NavBar';
 const Home = () => {
   return (
@@ -12,7 +12,7 @@ const Home = () => {
         <NavBar/>
         <CategoryIcon/>
         <Hero/>
-        <Allproducts/>
+        <AllProducts/>
         <Footer/>
     </div>
   )

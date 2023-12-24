@@ -8,8 +8,8 @@ const handleSignupUser = async (req, res) => {
   try {
     const { name, location, email, password } = req.body;
 
-    if (!password) {
-      return res.status(400).json({ success: false, error: "Password is required" });
+    if (!password || !name || !location || !email) {
+      return res.status(400).json({ success: false, error: "All fields are required!!" });
     }
 
     const salt = await bcrypt.genSalt(10);
@@ -34,43 +34,44 @@ const handleSignupUser = async (req, res) => {
 const handleLoginUser = async (req, res) => {
   try {
     const uEmail = req.body.userEmail;
+    const uPassword = req.body.userPassword;
+
+    if (!uEmail || !uPassword) {
+      return res.status(400).json({ error: "Please provide email and password" });
+    }
     const userData = await UserModel.findOne({ userEmail: uEmail });
 
     if (!userData) {
-       res.status(400).json({ error: "User not found" });
+      return res.status(400).json({ error: "User not found" });
     }
-    // res.send(userData)
 
-    const pwdCompare = await bcrypt.compare(req.body.userPassword, userData.userPassword);
+    const pwdCompare = await bcrypt.compare(uPassword, userData.userPassword);
 
     if (!pwdCompare) {
       return res.status(400).json({ error: "Invalid password" });
     }
 
-    const { userId, userEmail } = userData;
+    const { userId, userEmail, role } = userData;
     const payload = {
       uid: userId,
-      email: userEmail
+      uEmail: userEmail, 
+      uRole: role
     };
 
     const authToken = jwt.sign(payload, SecureKey, { expiresIn: '1hr' });
-    res.cookie('jwt',authToken,{
-      path:"/",
-      httpOnly:true,
+    res.cookie('jwt', authToken, {
+      path: "/",
+      httpOnly: true,
       sameSite: "lax",
-    })
+    });
 
-    res.status(200).send({ success: true});
+    res.status(200).send({ success: true, Uid: userId, UEmail: userEmail, authToken: authToken });
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: "Error processing login" });
   }
 };
 
-const handleGetLoggedUser = (req,res) => {
-  // const {uid, email} = req.body;
-  res.status(200).send(req.decodedToken)
-}
 
 const handleLogoutUser = (req,res) => {
   try {
@@ -94,9 +95,14 @@ const handleLogoutUser = (req,res) => {
   }
 }
 
+// const handleGetLoggedUser = (req,res) => {
+//   // const {uid, email} = req.body;
+//   res.status(200).send(req.decodedToken)
+// }
+
+
 module.exports = {
   handleSignupUser,
   handleLoginUser,
-  handleGetLoggedUser,
   handleLogoutUser
 };

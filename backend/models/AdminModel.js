@@ -1,32 +1,36 @@
 const mongoose = require("mongoose");
 const { nanoid } = require("nanoid");
+require("dotenv").config();
+const bcrypt = require("bcryptjs");
+
 
 // schema
-const UserSchema = new mongoose.Schema({
-    userId: {
+const AdminSchema = new mongoose.Schema({
+    adminId: {
         type:String,
         default:()=>nanoid(10)
     },
     role:{
         type:String,
-        default:"user"
+        default:"admin"
     },
-    userName:{
+    adminName:{
         type:String,
         required:true
     },
-    userLocation:{
-        type:String,
-        required:true,
-    },
-    userEmail:{
+    adminEmail:{
         type:String,
         required:true,
         unique:true
     },
-    userPassword:{
+    adminPassword:{
         type:String,
-        required:true,
+        required:true
+        
+    },
+    adminSecKey:{
+        type:String,
+        required:true
     },
     date:{
         type:Date,
@@ -37,5 +41,5 @@ const UserSchema = new mongoose.Schema({
 
 // model
 // users collection name
-const UserModel = mongoose.model("users",UserSchema);
-module.exports = UserModel
+const AdminModel = mongoose.model("admins",AdminSchema);
+module.exports = AdminModel

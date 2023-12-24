@@ -115,7 +115,7 @@ const Allproducts = () => {
         <div className="ml-14  lg:ml-32 ">
           <div className="flex flex-wrap ">
             {currentProducts.map((product) => (
-              <div className=" bg-white p-2 m-2 rounded-lg  lg:bg-white-500 lg:w-72 w-32">
+              <div className=" bg-black p-2 m-2 rounded-lg  lg:bg-white-500 lg:w-72 w-32">
                 <img
                   src={product.image}
                   alt={product.name}
@@ -149,7 +149,7 @@ const Allproducts = () => {
         <div className="ml-14  lg:ml-32 ">
           <div className="flex flex-wrap ">
             {currentProducts.map((product) => (
-              <div className="bg-white p-2 m-2 rounded-lg  lg:bg-white-500 lg:w-72 w-32">
+              <div className="bg-black p-2 m-2 rounded-lg  lg:bg-white-500 lg:w-72 w-32">
                 <img
                   src={product.image}
                   alt={product.name}

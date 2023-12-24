@@ -4,8 +4,12 @@ import { useNavigate } from 'react-router-dom';
 import NavBar from "../components/NavBar";
 import axios from 'axios';
 import Footer from '../components/Footer';
+import { useSelector } from 'react-redux';
 const SignUp = () => {
 let nav  = useNavigate();
+  const response = useSelector((state)=>state.authCheck);
+  const isLogged = response.isAuthenticated;
+
   const [cred, setCred] = useState({
     name: "",
     location: "",
@@ -18,32 +22,38 @@ let nav  = useNavigate();
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
-  
-    // const { name, location, email, password } = cred;
-  
-    // const inputData = {
-    //   userName: name,
-    //   userLocation: location,
-    //   userEmail: email,
-    //   userPassword: password,
-    // };
-  
-    try {
-      const response = await axios.post("http://localhost:3001/api/signupUser",cred);
-      // console.log(response.data);
-      alert("User Created Successfully");
-      nav("/login");
-    } catch (error) {
-      console.error(error);
-      alert("Some Error Occurred");
-      // Handle error or display an error message
-    }
+
+    
+      await axios.post("http://localhost:3001/api/signupUser",cred,{
+        withCredentials:true
+      }).then(()=>{
+
+        // console.log(response.data);
+        alert("User Created Successfully");
+        nav("/login");
+      }).catch((error)=>{
+        console.error(error);
+        alert("Some Error Occurred");
+
+      })
   };
+
+
+  const isAdminLoggedIn = useSelector(
+    (state) => state.adminAuthCheck.isAdminAuth
+  );
+
+  if(isAdminLoggedIn){
+    console.log("Admin cannot access user signUp")
+    navigate("/AdminDashboard")
+  }
 
   return (
     <div>
     <NavBar/>
-    <div class="mt-20 mb-20 flex items-center justify-center"  >
+    {!isLogged?
+    <>
+      <div class="mt-20 mb-20 flex items-center justify-center"  >
       <div class="w-full max-w-md text-center">
       <div className="text-xl font-bold mb-2 text-white">
         Welcome new User
@@ -132,6 +142,8 @@ let nav  = useNavigate();
         </form>
       </div>
     </div>
+    </>
+    :"You cannot SignUp because you are already logged in"}
     <Footer/>
   </div>
   )

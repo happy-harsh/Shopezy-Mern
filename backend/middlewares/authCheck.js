@@ -7,10 +7,6 @@ const authCheck = (req,res,next) => {
     const cookies = req.headers.cookie;
     const token  = cookies.split("=")[1];
     // console.log(token)
-
-
-
-
     if(!token){
         res.status(404).send({message:"no token found"})
     }else{

@@ -2,10 +2,12 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const bodyParser = require('body-parser');
-const userRouter = require('./routes/LoginSignup');
+const userRouter = require('./routes/UserLoginSignup');
 const productRouter = require('./routes/ProductRoute');
+const adminRouter = require('./routes/AdminLogin');
 const { handleConnectMongoDb } = require('./connection');
 const cookieParser = require('cookie-parser');
+const globalRouter = require('./routes/GlobalRouter');
 const app = express();
 
 // ENV file
@@ -26,7 +28,10 @@ app.use(cors(corsOptions));
 
 // routes
 app.use(userRouter);
-app.use(productRouter)
+app.use(productRouter);
+app.use(adminRouter);
+app.use(globalRouter)
+
 
 // Db connection
 handleConnectMongoDb(uri);

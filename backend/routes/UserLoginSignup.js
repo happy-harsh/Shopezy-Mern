@@ -3,10 +3,9 @@ const { body, validationResult } = require("express-validator");
 const {
   handleSignupUser,
   handleLoginUser,
-  handleGetLoggedUser,
   handleLogoutUser,
 } = require("../controllers/UserController");
-const { authCheck } = require("../middlewares/requireAuth");
+const { authCheck } = require("../middlewares/authCheck");
 const userRouter = express.Router();
 
 // SIGNUP ke liye
@@ -32,7 +31,7 @@ userRouter.post(
   handleLoginUser
 );
 
-userRouter.get("/api/user",authCheck,handleGetLoggedUser)
+
 
 
 userRouter.get("/api/logoutUser",authCheck,handleLogoutUser)
