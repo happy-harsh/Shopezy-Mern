@@ -42,7 +42,7 @@ const AdminLogin = () => {
       .then( (response) => {
         dispatch(adminLogin())
          alert("Login Successful");
-         navigate("/adminDashboard");
+         navigate("/");
         })
         .catch((error) => {
           // console.log(error.response.data);

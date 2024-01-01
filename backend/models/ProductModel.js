@@ -18,6 +18,24 @@ const ProductSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
+    proCat:{
+        type: String,
+        required:true,
+        default:"Medicine"
+    }
+    ,
+    proTag:{
+        type: String,
+        required:true,
+        default:"top50"
+    }
+    ,
+    proQty:{
+        type:Number,
+        required:true,
+        default:10
+    }
+    ,
     price: {
         type: Number,
         required: true,

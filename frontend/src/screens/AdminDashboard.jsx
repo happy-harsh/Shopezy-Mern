@@ -1,7 +1,8 @@
 import React from 'react'
 import NavBar from '../components/NavBar'
-import Product from '../components/Product'
+import Product from '../components/UserProducts'
 import { useSelector } from 'react-redux';
+import AdminProducts from '../components/AdminProducts';
 
 
 
@@ -11,11 +12,9 @@ const AdminDashboard = () => {
   );
   return (
     <div>
-      {isAdminLoggedIn ? 
-      <>
       <NavBar/>
-      <Product/>
-      </> : "Please Login as a admin to access this dashboard"}
+      {isAdminLoggedIn && 
+      <AdminProducts/> }
     </div>
   )
 }

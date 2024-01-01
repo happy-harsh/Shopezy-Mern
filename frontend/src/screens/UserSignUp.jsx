@@ -5,7 +5,7 @@ import NavBar from "../components/NavBar";
 import axios from 'axios';
 import Footer from '../components/Footer';
 import { useSelector } from 'react-redux';
-const SignUp = () => {
+const UserSignUp = () => {
 let nav  = useNavigate();
   const response = useSelector((state)=>state.authCheck);
   const isLogged = response.isAuthenticated;
@@ -30,7 +30,7 @@ let nav  = useNavigate();
 
         // console.log(response.data);
         alert("User Created Successfully");
-        nav("/login");
+        nav("/userLogin");
       }).catch((error)=>{
         console.error(error);
         alert("Some Error Occurred");
@@ -149,4 +149,4 @@ let nav  = useNavigate();
   )
 }
 
-export default SignUp
+export default UserSignUp

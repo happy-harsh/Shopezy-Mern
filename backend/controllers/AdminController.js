@@ -35,43 +35,34 @@ const handleAdminCreation = async (req, res) => {
 
 const handleAdminLogin = async (req, res) => {
   try {
-    const aEmail = req.body.adminEmail;
-    const aPassword = req.body.adminPassword;
-    const aSecKey = req.body.adminSecKey;
+    const { adminEmail, adminPassword, adminSecKey } = req.body;
 
-    if (!aEmail || !aPassword || !aSecKey) {
-      return res
-        .status(400)
-        .json({ error: "Please provide email , password and secret key" });
+    if (!adminEmail || !adminPassword || !adminSecKey) {
+      return res.status(400).json({ error: "Please provide email, password, and secret key" });
     }
-    const adminData = await AdminModel.findOne({ adminEmail: aEmail });
+
+    const adminData = await AdminModel.findOne({ adminEmail });
 
     if (!adminData) {
-      res.status(400).json({ error: "User not found" });
+      return res.status(400).json({ error: "User not found" });
     }
 
-    const pwdCompare = await bcrypt.compare(
-      aPassword,
-      adminData.adminPassword
-    );
+    const isPasswordValid = await bcrypt.compare(adminPassword, adminData.adminPassword);
+    const isSecretKeyValid = await bcrypt.compare(adminSecKey, adminData.adminSecKey);
 
-    if (!pwdCompare) {
+    if (!isPasswordValid) {
       return res.status(400).json({ error: "Invalid password" });
     }
-    const skCompare = await bcrypt.compare(
-      aSecKey,
-      adminData.adminSecKey
-    );
 
-    if (!skCompare) {
+    if (!isSecretKeyValid) {
       return res.status(400).json({ error: "Invalid Secret Key" });
     }
 
-    const { adminId, adminEmail,role } = adminData;
+    const { adminId, role } = adminData;
     const payload = {
       aid: adminId,
       aEmail: adminEmail,
-      aRole:role
+      aRole: role
     };
 
     const authToken = jwt.sign(payload, SecureKey, { expiresIn: "1hr" });
@@ -81,16 +72,16 @@ const handleAdminLogin = async (req, res) => {
       sameSite: "lax",
     });
 
-    res
-      .status(200)
-      .send({
-        success: true,payload
-      });
+    res.status(200).json({
+      success: true,
+      payload,
+    });
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: "Error processing login" });
   }
 };
+
 const handleAdminLogout = async (req, res) => {};
 
 module.exports = {

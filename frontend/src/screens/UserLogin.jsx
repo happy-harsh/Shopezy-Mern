@@ -6,7 +6,7 @@ import Footer from "../components/Footer";
 import { useDispatch, useSelector } from "react-redux";
 import { login, logout } from "../redux/slices/authSlice";
 
-const Login = () => {
+const UserLogin = () => {
   let navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -121,4 +121,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default UserLogin;

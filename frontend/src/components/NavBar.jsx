@@ -57,7 +57,7 @@ const NavBar = () => {
           dispatch(logout());
           dispatch(adminLogout())
         }
-        navigate("/login");
+        navigate("/userLogin");
       })
       .catch((err) => {
         console.log(err);
@@ -89,9 +89,17 @@ const NavBar = () => {
           </div>
 
           {isUserLoggedIn && (
-            <button className="text-white bg-blue-500 rounded-lg px-4 py-2 mb-2 sm:mb-0 sm:mr-2">
+                        <>
+                        <Link to="/UserDashboard" className="text-white bg-blue-500 rounded-lg px-4 py-2 mb-2 sm:mb-0 sm:mr-2">
+                        User all Product DashBoard
+                      </Link>
+            <Link to="/cart" className="text-white bg-blue-500 rounded-lg px-4 py-2 mb-2 sm:mb-0 sm:mr-2">
               Cart
+            </Link>
+            <button className="text-white bg-yellow-800 rounded-lg px-4 py-2 mb-2 sm:mb-0 sm:mr-2">
+              Order History
             </button>
+                        </>
           )}
           {isAdminLoggedIn && (
             <Link to="/AdminDashboard" className="text-white bg-blue-500 rounded-lg px-4 py-2 mb-2 sm:mb-0 sm:mr-2">
@@ -111,13 +119,13 @@ const NavBar = () => {
       {!isUserLoggedIn && !isAdminLoggedIn && (
         <div className="space-y-4 sm:space-x-4 sm:space-y-0">
           <div className="space-y-4 sm:space-y-0">
-            <Link to="/login">
+            <Link to="/userLogin">
               <button className="text-white m-2 bg-indigo-500 rounded-lg px-4 py-2 sm:m-2">
                 Login
               </button>
             </Link>
 
-            <Link to="/signup">
+            <Link to="/userSignUp">
               <button className="text-white m-2 bg-green-500 rounded-lg px-4 py-2 sm:m-2">
                 Sign Up
               </button>

@@ -8,6 +8,7 @@ const adminRouter = require('./routes/AdminLogin');
 const { handleConnectMongoDb } = require('./connection');
 const cookieParser = require('cookie-parser');
 const globalRouter = require('./routes/GlobalRouter');
+const CartRouter = require('./routes/CartRouter');
 const app = express();
 
 // ENV file
@@ -31,6 +32,7 @@ app.use(userRouter);
 app.use(productRouter);
 app.use(adminRouter);
 app.use(globalRouter)
+app.use(CartRouter);
 
 
 // Db connection

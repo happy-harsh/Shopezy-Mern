@@ -1,9 +1,6 @@
-const jwt = require("jsonwebtoken")
-const env= require('dotenv');
 const AdminModel = require("../models/AdminModel");
 const UserModel = require("../models/UserModel");
-env.config()
-const secretKey = process.env.SK;
+
 const roleCheck = async (req,res,next) => {
     const {uid, aid, uEmail, aEmail, uRole, aRole} = req.decodedToken;
 
@@ -11,7 +8,7 @@ const roleCheck = async (req,res,next) => {
     if(uid){
         const userData = await UserModel.findOne({ userId: uid });
         if(!userData){
-            res.status(400).send("User not FOund")
+            res.status(400).send("User not Found")
         }
         if(userData.role === uRole){
             req.userData = userData;
