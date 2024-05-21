@@ -36,7 +36,7 @@ const AdminLogin = () => {
         adminEmail:cred.email,
         adminPassword:cred.password
       }
-      await axios.post("http://localhost:3001/api/adminLogin",adminData,{
+      await axios.post(`${process.env.API_URL}/api/adminLogin`,adminData,{
         withCredentials:true
       })
       .then( (response) => {

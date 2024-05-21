@@ -53,7 +53,7 @@ export const handleQtyChange = createAsyncThunk(
   'cart/qtyChange',
   async (obj) => {
     try {
-      const response = await axios.put('http://localhost:3001/api/qtyChange',obj,{
+      const response = await axios.put(`${process.env.API_URL}/api/qtyChange`,obj,{
         withCredentials:true
       });
       return response.data.cart; // Return the updated cart data after removal

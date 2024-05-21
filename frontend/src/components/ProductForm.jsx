@@ -38,7 +38,7 @@ const ProductForm = ({ isAddingProduct, setIsAddingProduct }) => {
   const handleAddProduct = async (e) => {
     e.preventDefault();
     await axios
-      .post("http://localhost:3001/api/addProduct", formData, {
+      .post(`${process.env.API_URL}/api/addProduct`, formData, {
         withCredentials: true,
       })
       .then((res) => {

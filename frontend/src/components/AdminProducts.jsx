@@ -65,7 +65,7 @@ const AdminProducts = () => {
   const handleUpdateProduct = async () => {
     await axios
       .post(
-        `http://localhost:3001/api/updateProduct/${selectedProduct._id}`,
+        `${process.env.API_URL}/api/updateProduct/${selectedProduct._id}`,
         updatedFormData,
         {
           withCredentials: true,
