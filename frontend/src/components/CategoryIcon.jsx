@@ -11,11 +11,11 @@ import "slick-carousel/slick/slick-theme.css";
 
 const CategoryIcon = () => {
   const imageTextArray = [
-    { image: img1, text: "Fashion", link: "/category1" },
-    { image: img2, text: "Beauty", link: "/category2" },
-    { image: img3, text: "Electronics", link: "/category3" },
-    { image: img4, text: "Medicine", link: "/category4" },
-    { image: img5, text: "Household", link: "/category5" },
+    { image: img1, text: "Fashion", link: "/fashion" },
+    { image: img2, text: "Beauty", link: "/beauty" },
+    { image: img3, text: "Electronics", link: "/electronics" },
+    { image: img4, text: "Medicine", link: "/medicine" },
+    { image: img5, text: "Household", link: "/household" },
   ];
 
   const settings = {

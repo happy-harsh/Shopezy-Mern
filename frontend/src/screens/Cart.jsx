@@ -41,20 +41,16 @@ const Cart = () => {
     const cartProduct = cartData.items.find((p) => p.proId === proId);
     const currProQty = cartProduct.proQty + 1;
     const ogProPrice = product.price;
-    console.log(ogProPrice);
-    console.log(currProQty);
-    console.log(qty);
 
     if (product && cartProduct && currProQty <= qty) {
       setExceed(true);
-      const newPrice = currProQty * ogProPrice + 1;
+      const newPrice = currProQty * ogProPrice;
       let obj = {
         userId,
         proId,
         proQty: currProQty,
         newPrice,
       };
-      console.log(obj);
       dispatch(handleQtyChange(obj));
       fetchCartData();
       setState(!state);
@@ -65,31 +61,29 @@ const Cart = () => {
 
   const handleDec = (proId) => {
     const product = data.find((p) => p.proId === proId);
-    const qty = product.proQty;
     const cartProduct = cartData.items.find((p) => p.proId === proId);
     const currProQty = cartProduct.proQty - 1;
     const ogProPrice = product.price;
-    console.log(ogProPrice);
-    console.log(currProQty);
-    console.log(qty);
 
-    if (product && cartProduct && currProQty <= qty) {
+    if (currProQty < 1) {
+      return; // Prevent quantity from going below 1
+    }
+
+    if (product && cartProduct) {
       setExceed(true);
-      const newPrice = currProQty * ogProPrice - 1;
+      const newPrice = currProQty * ogProPrice;
       let obj = {
         userId,
         proId,
         proQty: currProQty,
         newPrice,
       };
-      console.log(obj);
       dispatch(handleQtyChange(obj));
       fetchCartData();
       setState(!state);
-    } else {
-      setExceed(false);
     }
   };
+
   const fetchCartData = () => {
     dispatch(fetchCartAsync(userId));
   };
@@ -143,7 +137,7 @@ const Cart = () => {
                 -
               </button>
               <p className="text-gray-700">Quantity: {product.proQty}</p>
-              {exceed ?(
+              {exceed ? (
                 <>
                   <button
                     onClick={() => {
@@ -153,7 +147,9 @@ const Cart = () => {
                     +
                   </button>
                 </>
-              ): <>no more stock</>}
+              ) : (
+                <>no more stock</>
+              )}
               <p className="text-gray-700">Price: ${product.proFinalPrice}</p>
             </div>
             <button
@@ -165,7 +161,7 @@ const Cart = () => {
           </div>
         ))
       )}
-      Cart Total : {totalPrice}/-
+      Cart Total: Rs. {totalPrice}/-
     </>
   );
 };

@@ -42,6 +42,8 @@ const UserLogin = () => {
         localStorage.setItem("userId", response.data.Uid);
         localStorage.setItem("userEmail", response.data.UEmail);
         // localStorage.setItem('token', response.data.authToken);
+
+        // Now authSlice becomes true
         dispatch(login());
         alert("Login Successful");
         navigate("/");

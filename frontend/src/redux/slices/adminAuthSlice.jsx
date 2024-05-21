@@ -1,5 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+// Admin Auth Check
+
 export const adminAuthSlice = createSlice({
     initialState: { isAdminAuth: false }, // Adjust the initial state structure
     name: 'adminAuthCheck',

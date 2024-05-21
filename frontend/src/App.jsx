@@ -8,6 +8,12 @@ import UserDashboard from "./screens/UserDashboard";
 import UserLogin from "./screens/UserLogin";
 import UserSignUp from "./screens/UserSignUp";
 import Cart from "./screens/Cart";
+import Electronic from "./categories/Electronic";
+import Household from "./categories/Household";
+import Medicine from "./categories/Medicine";
+import Fashion from "./categories/Fashion";
+import Beauty from "./categories/Beauty";
+// import Medicine from "./components/categories/Medicine";
 
 function App() {
   return (
@@ -20,6 +26,12 @@ function App() {
           <Route exact path="/adminDashboard" element={<AdminDashboard/>} />
           <Route exact path="/userDashboard" element={<UserDashboard/>} />
           <Route exact path="/cart" element={<Cart/>} />
+          <Route exact path="/electronics" element={<Electronic/>} />
+          <Route exact path="/medicine" element={<Medicine/>} />
+          <Route exact path="/household" element={<Household/>} />
+          <Route exact path="/fashion" element={<Fashion/>} />
+          <Route exact path="/beauty" element={<Beauty/>} />
+          
         </Routes>
 
     </Router>

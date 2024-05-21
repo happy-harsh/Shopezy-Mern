@@ -8,7 +8,7 @@ const UserProducts = () => {
   const data = useSelector((state) => state.products.data);
   const loading = useSelector((state) => state.products.loading);
   const error = useSelector((state) => state.products.error);
-  // const cartData = useSelector((state) => state.cart.cartData);
+  const cartData = useSelector((state) => state.cart.cartData);
   const [cart, setCart] = useState([]);
 
   const isUserLoggedIn = useSelector(
@@ -75,7 +75,6 @@ const UserProducts = () => {
     <>
       {isUserLoggedIn ? (
         <div>
-          <h6>All Products</h6>
           <div className="flex relative">
             <div className="ml-14 lg:ml-32">
               <div className="flex flex-wrap">
@@ -90,13 +89,14 @@ const UserProducts = () => {
                         alt={product.proName}
                         className="w-full h-40 object-cover mb-4"
                       />
-                      <h1>{product.proName}</h1>
-                      <h2 className="text-lg font-semibold mb-2">
+                      <h1 className="text-xl font-semibold mb-2">{product.proName}</h1>
+                      <h2 className="text-md font-semibold mb-2">
                         {product.proDesc}
                       </h2>
-                      <p>Total Price: ${calculateTotalPrice(product.proId)}</p>
+                      <p>Price: Rs. {calculateTotalPrice(product.proId)}</p>
+                      <div className="flex flex-between gap-10 mt-5">
                       <button
-                        className="bg-green-400 rounded-lg px-2 py-2"
+                        className="bg-green-400 rounded-lg px-2 py-1"
                         onClick={() => addToCart(product.proId)}
                       >
                         Add to Cart
@@ -105,6 +105,7 @@ const UserProducts = () => {
                         "Out of Stock"
                       ) : (
                         <select
+                        className="text-black"
                           name=""
                           id=""
                           value={selectedQuantities[product.proId] || 1} // Set value from selectedQuantities state
@@ -124,6 +125,7 @@ const UserProducts = () => {
                             })}
                         </select>
                       )}
+                      </div>
                     </div>
                   ))}
               </div>

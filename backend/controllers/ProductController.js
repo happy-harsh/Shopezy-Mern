@@ -144,7 +144,7 @@ const productsData = [
 
         const productId = req.params.proId;
         // Delete logic using productId
-        await ProductModel.findOneAndDelete({ proId: productId });
+        await ProductModel.findByIdAndDelete(productId );
         return res.status(200).send("Product deleted successfully");
     } catch (error) {
         console.error(error);
@@ -152,10 +152,52 @@ const productsData = [
     }
 };
 
+const handleUpdateProduct = async (req, res) => {
+  try {
+    if (!req.adminData) {
+      return res.status(403).send("Unauthorized: Admin role required");
+    }
+
+    const productId = req.params.proId;
+    const {
+      proImg,
+      proName,
+      proDesc,
+      proTag,
+      proCat,
+      proQty,
+      price
+    } = req.body;
+
+    const updatedProduct = await ProductModel.findOneAndUpdate(
+      { _id: productId },
+      {
+        proImg,
+        proName,
+        proDesc,
+        proTag,
+        proCat,
+        proQty,
+        price
+      },
+      { new: true }
+    );
+
+    if (!updatedProduct) {
+      return res.status(404).send("Product not found");
+    }
+
+    return res.status(200).send(updatedProduct);
+  } catch (error) {
+    console.error(error);
+    return res.status(500).send("Error updating the product");
+  }
+};
   module.exports = {
     handleInsertDoc,
     handleAddProduct,
     handleGetAllProducts,
     handleDeleteAllProducts,
-    handleDeleteProduct
+    handleDeleteProduct,
+    handleUpdateProduct
   }

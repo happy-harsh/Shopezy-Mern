@@ -3,8 +3,13 @@ const env= require('dotenv');
 env.config()
 const secretKey = process.env.SK;
 const authCheck = (req,res,next) => {
+        // Check if the Cookie header exists
+        if (!req.headers.cookie) {
+            return res.status(404).send({ message: "No token found" });
+        }
     // here the req must also have cookie with it
     const cookies = req.headers.cookie;
+
     const token  = cookies.split("=")[1];
     // console.log(token)
     if(!token){

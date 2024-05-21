@@ -9,7 +9,7 @@ const UserSchema = new mongoose.Schema({
     },
     role:{
         type:String,
-        default:"user"
+        default:"user" // any one who signups is a user 
     },
     userName:{
         type:String,

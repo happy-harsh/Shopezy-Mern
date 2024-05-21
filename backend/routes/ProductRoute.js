@@ -1,5 +1,5 @@
 const express = require("express");
-const { handleInsertDoc, handleAddProduct, handleGetAllProducts, handleDeleteAllProducts, handleDeleteProduct } = require("../controllers/ProductController");
+const { handleInsertDoc, handleAddProduct, handleGetAllProducts, handleDeleteAllProducts, handleDeleteProduct, handleUpdateProduct } = require("../controllers/ProductController");
 const { authCheck } = require("../middlewares/authCheck");
 const { roleCheck } = require("../middlewares/roleCheck");
 const { checkAdminRole } = require("../middlewares/checkAdminRole");
@@ -11,11 +11,14 @@ productRouter.get('/api/insertDoc',authCheck,handleInsertDoc)
 // admin
 productRouter.post('/api/addProduct',authCheck,checkAdminRole,handleAddProduct)
 
-// admin + user 
-productRouter.get('/api/allProducts',authCheck,roleCheck,handleGetAllProducts)
+// //anyone 
+productRouter.get('/api/allProducts',handleGetAllProducts)
 
 // admin
 productRouter.delete('/api/deleteAllProducts',authCheck,checkAdminRole,handleDeleteAllProducts)
+
+//admin
+productRouter.post('/api/updateProduct/:proId',authCheck,checkAdminRole,handleUpdateProduct)
 
 // admin
 productRouter.delete('/api/deleteProduct/:proId',authCheck,checkAdminRole,handleDeleteProduct)

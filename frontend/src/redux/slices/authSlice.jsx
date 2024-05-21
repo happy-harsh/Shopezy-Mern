@@ -1,5 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+// User auth Check 
+
 export const authSlice = createSlice({
     initialState: { isAuthenticated: false }, // Adjust the initial state structure
     name: 'authCheck',
