@@ -62,8 +62,9 @@ const handleLoginUser = async (req, res) => {
     res.cookie('jwt', authToken, {
       path: "/",
       httpOnly: true,
-      sameSite: "strict",
+      sameSite: "None",
       secure: true,
+      domain: "shopezy-mern-backend.vercel.app" // Set your domain here
     });
 
     res.status(200).send({ success: true, Uid: userId, UEmail: userEmail, authToken: authToken });

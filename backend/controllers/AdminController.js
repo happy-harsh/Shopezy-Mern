@@ -69,8 +69,9 @@ const handleAdminLogin = async (req, res) => {
     res.cookie("jwt", authToken, {
       path: "/",
       httpOnly: true,
-      sameSite: "strict",
+      sameSite: "None",
       secure: true,
+      domain: "shopezy-mern-backend.vercel.app"
     });
 
     res.status(200).json({
