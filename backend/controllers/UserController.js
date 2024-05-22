@@ -63,7 +63,7 @@ const handleLoginUser = async (req, res) => {
     {
       path: "/",
       httpOnly: true,
-      sameSite: "lax",
+      sameSite: "none",
       secure: true,
       domain: "shopezy-mern-backend.vercel.app"
     }
@@ -93,7 +93,7 @@ const handleLogoutUser = (req,res) => {
           {
             path: "/",
             httpOnly: true,
-            sameSite: "lax",
+            sameSite: "none",
             secure: true,
             domain: "shopezy-mern-backend.vercel.app"
           }
