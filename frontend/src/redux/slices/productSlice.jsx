@@ -2,7 +2,7 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from 'axios'
 // fetch Product is an Action
 export const fetchProducts = createAsyncThunk('fetchProducts', async () => {
-    const response = await axios.get("https://shopezy-mern-backend.vercel.app/api/allProduct",{withCredentials:true})
+    const response = await axios.get("https://shopezy-mern-backend.vercel.app/api/allProducts",{withCredentials:true})
 
     return response.data;
 })
