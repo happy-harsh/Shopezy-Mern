@@ -49,7 +49,7 @@ const NavBar = () => {
   const handleLogout = async (e) => {
     e.preventDefault();
     await axios
-      .get(`${process.env.REACT_APP_URL}/api/logoutUser`, { withCredentials: true })
+      .get(`${import.meta.env.VITE_API_URL}/api/logoutUser`, { withCredentials: true })
       .then((res) => {
         if (res.status === 200) {
           localStorage.removeItem("userEmail");
