@@ -69,7 +69,7 @@ const handleAdminLogin = async (req, res) => {
     res.cookie("jwt", authToken, {
       path: "/",
       httpOnly: true,
-      sameSite: "None",
+      sameSite: "strict",
       secure: true,
     });
 
