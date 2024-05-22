@@ -23,28 +23,28 @@ const NavBar = () => {
 
   // used for displaying the user email on navbar
 
-  const fetchId = async () => {
-    await axios
-      .get(`${import.meta.env.VITE_API_URL}/api/authStatusRole`, {
-        withCredentials: true,
-      })
-      .then((response) => {
-        if (response.data.role === "admin") {
-          setAdmin(response.data);
-          dispatch(adminLogin());
-        } else {
-          setUser(response.data);
-          dispatch(login());
-        }
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
+  // const fetchId = async () => {
+  //   await axios
+  //     .get(`${import.meta.env.VITE_API_URL}/api/authStatusRole`, {
+  //       withCredentials: true,
+  //     })
+  //     .then((response) => {
+  //       if (response.data.role === "admin") {
+  //         setAdmin(response.data);
+  //         dispatch(adminLogin());
+  //       } else {
+  //         setUser(response.data);
+  //         dispatch(login());
+  //       }
+  //     })
+  //     .catch((error) => {
+  //       console.log(error);
+  //     });
+  // };
 
-  useEffect(() => {
-    fetchId();
-  }, []);
+  // useEffect(() => {
+  //   fetchId();
+  // }, []);
 
   const handleLogout = async (e) => {
     e.preventDefault();
