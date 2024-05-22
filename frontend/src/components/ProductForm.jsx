@@ -38,7 +38,7 @@ const ProductForm = ({ isAddingProduct, setIsAddingProduct }) => {
   const handleAddProduct = async (e) => {
     e.preventDefault();
     await axios
-      .post(`${process.env.REACT_APP_URL}/api/addProduct`, formData, {
+      .post(`${import.meta.env.VITE_API_URL}/api/addProduct`, formData, {
         withCredentials: true,
       })
       .then((res) => {

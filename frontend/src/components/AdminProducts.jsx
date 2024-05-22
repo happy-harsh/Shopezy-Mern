@@ -34,7 +34,7 @@ const AdminProducts = () => {
 
   const handleDeleteProduct = async (id) => {
     await axios
-      .delete(`${process.env.REACT_APP_URL}/api/deleteProduct/${id}`, {
+      .delete(`${import.meta.env.VITE_API_URL}/api/deleteProduct/${id}`, {
         withCredentials: true,
       })
       .then((response) => {
@@ -65,7 +65,7 @@ const AdminProducts = () => {
   const handleUpdateProduct = async () => {
     await axios
       .post(
-        `${process.env.API_URL}/api/updateProduct/${selectedProduct._id}`,
+        `${import.meta.env.VITE_API_URL}/api/updateProduct/${selectedProduct._id}`,
         updatedFormData,
         {
           withCredentials: true,

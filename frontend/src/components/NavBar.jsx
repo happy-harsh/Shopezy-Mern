@@ -25,7 +25,7 @@ const NavBar = () => {
 
   const fetchId = async () => {
     await axios
-      .get(`${process.env.REACT_APP_URL}/api/authStatusRole`, {
+      .get(`${import.meta.env.VITE_API_URL}/api/authStatusRole`, {
         withCredentials: true,
       })
       .then((response) => {

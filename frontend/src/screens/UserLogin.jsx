@@ -34,7 +34,7 @@ const UserLogin = () => {
       userPassword: cred.password,
     };
     await axios
-      .post(`${process.env.REACT_APP_URL}/api/loginUser`, userData, {
+      .post(`${import.meta.env.VITE_API_URL}/api/loginUser`, userData, {
         withCredentials: true,
       })
       .then((response) => {

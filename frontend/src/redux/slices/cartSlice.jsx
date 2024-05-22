@@ -9,7 +9,7 @@ export const addToCartAsync = createAsyncThunk(
     // console.log(userId,proId,proName,proQty,proFinalPrice)
     // console.log(obj)
     try {
-      const response = await axios.post('http://localhost:3001/api/addToCart', obj,{
+      const response = await axios.post(`${import.meta.env.VITE_API_URL}/api/addToCart`, obj,{
         withCredentials:true
       });
       return response.data.cart; // Return the updated cart data
@@ -25,7 +25,7 @@ export const fetchCartAsync = createAsyncThunk(
   async (id) => {
     // console.log(obj);
     try {
-      const response = await axios.get(`http://localhost:3001/api/fetchCart/${id}`,{
+      const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/fetchCart/${id}`,{
         withCredentials:true
       });
       return response.data.cart; // Return the fetched cart data
@@ -40,7 +40,7 @@ export const removeFromCartAsync = createAsyncThunk(
   'cart/removeFromCart',
   async (obj) => {
     try {
-      const response = await axios.post(`${process.env.REACT_APP_URL}/api/removeFromCart`,obj,{
+      const response = await axios.post(`${import.meta.env.VITE_API_URL}/api/removeFromCart`,obj,{
         withCredentials:true
       });
       return response.data.cart; // Return the updated cart data after removal
@@ -53,7 +53,7 @@ export const handleQtyChange = createAsyncThunk(
   'cart/qtyChange',
   async (obj) => {
     try {
-      const response = await axios.put(`${process.env.REACT_APP_URL}/api/qtyChange`,obj,{
+      const response = await axios.put(`${import.meta.env.VITE_API_URL}/api/qtyChange`,obj,{
         withCredentials:true
       });
       return response.data.cart; // Return the updated cart data after removal
