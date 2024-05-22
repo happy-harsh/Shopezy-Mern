@@ -70,6 +70,7 @@ const handleAdminLogin = async (req, res) => {
       path: "/",
       httpOnly: true,
       sameSite: "lax",
+      secure: true,
     });
 
     res.status(200).json({

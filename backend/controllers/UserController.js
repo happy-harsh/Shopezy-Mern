@@ -63,6 +63,7 @@ const handleLoginUser = async (req, res) => {
       path: "/",
       httpOnly: true,
       sameSite: "lax",
+      secure: true,
     });
 
     res.status(200).send({ success: true, Uid: userId, UEmail: userEmail, authToken: authToken });
