@@ -140,9 +140,6 @@ const HomeProducts = () => {
   console.log(data)
 
 
-  useEffect(() => {
-    console.log('API URL:', import.meta.env.VITE_API_URL);
-  }, []);
 
 
 
