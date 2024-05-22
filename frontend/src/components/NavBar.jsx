@@ -124,6 +124,11 @@ const NavBar = () => {
                 Login
               </button>
             </Link>
+            <Link to="/adminLogin">
+              <button className="text-white m-2 bg-red-500 rounded-lg px-4 py-2 sm:m-2">
+                Admin Login
+              </button>
+            </Link>
 
             <Link to="/userSignUp">
               <button className="text-white m-2 bg-green-500 rounded-lg px-4 py-2 sm:m-2">
