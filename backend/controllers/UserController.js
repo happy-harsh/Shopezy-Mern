@@ -59,13 +59,15 @@ const handleLoginUser = async (req, res) => {
     };
 
     const authToken = jwt.sign(payload, SecureKey, { expiresIn: '1hr' });
-    res.cookie('jwt', authToken, {
+    res.cookie('jwt', authToken, 
+    {
       path: "/",
       httpOnly: true,
-      sameSite: "None",
+      sameSite: "None", // Explicitly setting SameSite to None
       secure: true,
-      domain: "shopezy-mern-backend.vercel.app" // Set your domain here
-    });
+      domain: "shopezy-mern-frontend.vercel.app" // The domain must match the frontend domain for cross-site cookies
+    }
+  );
 
     res.status(200).send({ success: true, Uid: userId, UEmail: userEmail, authToken: authToken });
   } catch (error) {
@@ -87,7 +89,15 @@ const handleLogoutUser = (req,res) => {
           res.status(404).send({ message: "JWT is not authentic" });
         } else {
           // If token is authentic, clear the JWT cookie
-          res.clearCookie('jwt');
+          res.clearCookie('jwt',
+            {
+              path: "/",
+              httpOnly: true,
+              sameSite: "None", // Explicitly setting SameSite to None
+              secure: true,
+              domain: "shopezy-mern-frontend.vercel.app" // The domain must match the frontend domain for cross-site cookies
+            }
+          );
           res.status(200).send({ message: "Logout successful" });
         }
       });
