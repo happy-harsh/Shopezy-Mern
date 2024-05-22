@@ -25,7 +25,7 @@ const NavBar = () => {
 
   const fetchId = async () => {
     await axios
-      .get(`${process.env.API_URL}/api/authStatusRole`, {
+      .get(`${process.env.REACT_APP_URL}/api/authStatusRole`, {
         withCredentials: true,
       })
       .then((response) => {
@@ -49,7 +49,7 @@ const NavBar = () => {
   const handleLogout = async (e) => {
     e.preventDefault();
     await axios
-      .get(`${process.env.API_URL}/api/logoutUser`, { withCredentials: true })
+      .get(`${process.env.REACT_APP_URL}/api/logoutUser`, { withCredentials: true })
       .then((res) => {
         if (res.status === 200) {
           localStorage.removeItem("userEmail");

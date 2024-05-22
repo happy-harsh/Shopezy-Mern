@@ -40,7 +40,7 @@ export const removeFromCartAsync = createAsyncThunk(
   'cart/removeFromCart',
   async (obj) => {
     try {
-      const response = await axios.post('http://localhost:3001/api/removeFromCart',obj,{
+      const response = await axios.post(`${process.env.REACT_APP_URL}/api/removeFromCart`,obj,{
         withCredentials:true
       });
       return response.data.cart; // Return the updated cart data after removal
@@ -53,7 +53,7 @@ export const handleQtyChange = createAsyncThunk(
   'cart/qtyChange',
   async (obj) => {
     try {
-      const response = await axios.put(`${process.env.API_URL}/api/qtyChange`,obj,{
+      const response = await axios.put(`${process.env.REACT_APP_URL}/api/qtyChange`,obj,{
         withCredentials:true
       });
       return response.data.cart; // Return the updated cart data after removal

@@ -34,7 +34,7 @@ const AdminProducts = () => {
 
   const handleDeleteProduct = async (id) => {
     await axios
-      .delete(`http://localhost:3001/api/deleteProduct/${id}`, {
+      .delete(`${process.env.REACT_APP_URL}/api/deleteProduct/${id}`, {
         withCredentials: true,
       })
       .then((response) => {

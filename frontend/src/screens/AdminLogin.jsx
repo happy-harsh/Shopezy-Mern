@@ -36,7 +36,7 @@ const AdminLogin = () => {
         adminEmail:cred.email,
         adminPassword:cred.password
       }
-      await axios.post(`${process.env.API_URL}/api/adminLogin`,adminData,{
+      await axios.post(`${process.env.REACT_APP_URL}/api/adminLogin`,adminData,{
         withCredentials:true
       })
       .then( (response) => {

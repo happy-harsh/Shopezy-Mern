@@ -24,7 +24,7 @@ let nav  = useNavigate();
     e.preventDefault();
 
     
-      await axios.post(`${process.env.API_URL}/api/signupUser`,cred,{
+      await axios.post(`${process.env.REACT_APP_URL}/api/signupUser`,cred,{
         withCredentials:true
       }).then(()=>{
 

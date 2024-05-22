@@ -15,6 +15,7 @@
     "@material-tailwind/react": "^2.1.2",
     "@reduxjs/toolkit": "^2.0.1",
     "axios": "^1.5.1",
+    "dotenv": "^16.4.5",
     "flat-color-icons": "^1.1.0",
     "local-storage": "^2.0.0",
     "navigate": "^0.3.6",
