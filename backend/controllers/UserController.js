@@ -62,7 +62,7 @@ const handleLoginUser = async (req, res) => {
     res.cookie('jwt', authToken, {
       path: "/",
       httpOnly: true,
-      sameSite: "lax",
+      // sameSite: "lax",
       secure: true,
     });
 

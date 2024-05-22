@@ -34,6 +34,6 @@ userRouter.post(
 
 
 
-userRouter.get("/api/logoutUser",authCheck,handleLogoutUser)
+userRouter.get("/api/logoutUser",handleLogoutUser)
 
 module.exports = userRouter;
