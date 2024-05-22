@@ -67,12 +67,12 @@ const handleAdminLogin = async (req, res) => {
 
     const authToken = jwt.sign(payload, SecureKey, { expiresIn: "1hr" });
     res.cookie("jwt", authToken,
-    {
+     {
       path: "/",
       httpOnly: true,
-      sameSite: "None", // Explicitly setting SameSite to None
+      sameSite: "None",
       secure: true,
-      domain: "shopezy-mern-frontend.vercel.app" // The domain must match the frontend domain for cross-site cookies
+      domain: "shopezy-mern-backend.vercel.app"
     }
   );
 

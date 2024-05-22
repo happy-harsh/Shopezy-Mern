@@ -63,9 +63,9 @@ const handleLoginUser = async (req, res) => {
     {
       path: "/",
       httpOnly: true,
-      sameSite: "None", // Explicitly setting SameSite to None
+      sameSite: "None",
       secure: true,
-      domain: "shopezy-mern-frontend.vercel.app" // The domain must match the frontend domain for cross-site cookies
+      domain: "shopezy-mern-backend.vercel.app"
     }
   );
 
@@ -90,13 +90,13 @@ const handleLogoutUser = (req,res) => {
         } else {
           // If token is authentic, clear the JWT cookie
           res.clearCookie('jwt',
-            {
-              path: "/",
-              httpOnly: true,
-              sameSite: "None", // Explicitly setting SameSite to None
-              secure: true,
-              domain: "shopezy-mern-frontend.vercel.app" // The domain must match the frontend domain for cross-site cookies
-            }
+          {
+            path: "/",
+            httpOnly: true,
+            sameSite: "None",
+            secure: true,
+            domain: "shopezy-mern-backend.vercel.app"
+          }
           );
           res.status(200).send({ message: "Logout successful" });
         }
