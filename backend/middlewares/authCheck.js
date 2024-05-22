@@ -13,7 +13,7 @@ const authCheck = (req,res,next) => {
     const token  = cookies.split("=")[1];
     // console.log(token)
     if(!token){
-        res.status(404).send({message:"no token found"})
+        res.status(401).send({message:"no token found"})
     }else{
         jwt.verify(token,secretKey,(err, decodedToken)=>{
             if(err){
