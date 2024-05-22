@@ -19,7 +19,7 @@ const uri =  process.env.URI
 // middleware
 const corsOptions = {
   // origin:"http://localhost:5173",
-  origin:"https://shopezy-mern-frontend.vercel.app/",
+  origin:"https://shopezy-mern-frontend.vercel.app",
   credentials:true,
   
 }
