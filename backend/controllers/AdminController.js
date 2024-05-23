@@ -72,7 +72,7 @@ const handleAdminLogin = async (req, res) => {
       httpOnly: true,
       sameSite: "None",
       secure: true,
-      domain: "shopezy-mern-backend.vercel.app"
+      domain: "https://shopezy-mern-frontend.vercel.app/"
     }
   );
 

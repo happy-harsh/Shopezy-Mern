@@ -32,7 +32,7 @@ app.use(cors(corsOptions));
 app.use(userRouter);
 app.use(productRouter);
 app.use(adminRouter);
-// app.use(globalRouter)
+app.use(globalRouter)
 app.use(CartRouter);
 
 

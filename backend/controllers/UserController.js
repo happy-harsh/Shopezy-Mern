@@ -65,7 +65,7 @@ const handleLoginUser = async (req, res) => {
       httpOnly: true,
       sameSite: "none",
       secure: true,
-      domain: "shopezy-mern-backend.vercel.app"
+      domain: "https://shopezy-mern-frontend.vercel.app/"
     }
   );
 
@@ -95,7 +95,7 @@ const handleLogoutUser = (req,res) => {
             httpOnly: true,
             sameSite: "none",
             secure: true,
-            domain: "shopezy-mern-backend.vercel.app"
+            domain: "https://shopezy-mern-frontend.vercel.app/"
           }
           );
           res.status(200).send({ message: "Logout successful" });
