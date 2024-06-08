@@ -1,5 +1,4 @@
 import React from "react";
-
 import { Carousel } from "@material-tailwind/react";
 import img1 from "../assets/heros images/1.png";
 import img2 from "../assets/heros images/2.png";
@@ -18,7 +17,7 @@ const Hero = () => {
             key={index}
             src={image}
             alt={`Image ${index + 1}`}
-            className="h-84 sm:h-92 w-full "
+            className="h-64 w-full object-cover sm:h-72 md:h-96  "
           />
         ))}
       </Carousel>

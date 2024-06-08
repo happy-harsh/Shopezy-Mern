@@ -1,6 +1,9 @@
 const AdminModel = require("../models/AdminModel");
 const UserModel = require("../models/UserModel");
 
+
+// This middleware ensures routes where only auth users role and admin role can visit and no other role and no auth user can visit 
+
 const roleCheck = async (req, res, next) => {
     const { uid, aid, uRole, aRole } = req.decodedToken;
 

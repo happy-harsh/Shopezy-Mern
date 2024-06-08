@@ -49,13 +49,15 @@ const NavBar = () => {
   const handleLogout = async (e) => {
     e.preventDefault();
     await axios
-      .get(`${import.meta.env.VITE_API_URL}/api/logoutUser`, { withCredentials: true })
+      .get(`${import.meta.env.VITE_API_URL}/api/logoutUser`, {
+        withCredentials: true,
+      })
       .then((res) => {
         if (res.status === 200) {
           localStorage.removeItem("userEmail");
           localStorage.removeItem("userId");
           dispatch(logout());
-          dispatch(adminLogout())
+          dispatch(adminLogout());
         }
         navigate("/userLogin");
       })
@@ -65,11 +67,16 @@ const NavBar = () => {
   };
   return (
     <nav
-      className="bg-blue-1000 p-4 sm:h-24 sm:p-6 md:p-8 lg:p-10 xl:p-12 flex flex-col sm:flex-row justify-between items-center"
+      className="bg-blue-1000  flex flex-col wrap justify-between items-center md:flex-row  text-black w-full"
       style={{ backgroundColor: "#013952" }}
     >
-      <div className="text-white hover:border font-bold m-4 text-xl sm:text-2xl sm:ml-4">
-        <Link to="/">Shopezy.com</Link>
+      <div className="text-white m-2 p-2 flex flex-col">
+        <div className=" text-3xl font-bold">
+          <Link to="/">Shopezy</Link>
+        </div>
+        <p className=" italic text-xs">
+          Simplified Ecommerce
+        </p>
       </div>
       <div className="relative sm:flex-grow sm:mr-4">
         <input
@@ -89,20 +96,29 @@ const NavBar = () => {
           </div>
 
           {isUserLoggedIn && (
-                        <>
-                        <Link to="/UserDashboard" className="text-white bg-blue-500 rounded-lg px-4 py-2 mb-2 sm:mb-0 sm:mr-2">
-                        User all Product DashBoard
-                      </Link>
-            <Link to="/cart" className="text-white bg-blue-500 rounded-lg px-4 py-2 mb-2 sm:mb-0 sm:mr-2">
-              Cart
-            </Link>
-            <button className="text-white bg-yellow-800 rounded-lg px-4 py-2 mb-2 sm:mb-0 sm:mr-2">
-              Order History
-            </button>
-                        </>
+            <>
+              <Link
+                to="/UserDashboard"
+                className="text-white bg-blue-500 rounded-lg px-4 py-2 mb-2 sm:mb-0 sm:mr-2"
+              >
+                User all Product DashBoard
+              </Link>
+              <Link
+                to="/cart"
+                className="text-white bg-blue-500 rounded-lg px-4 py-2 mb-2 sm:mb-0 sm:mr-2"
+              >
+                Cart
+              </Link>
+              <button className="text-white bg-yellow-800 rounded-lg px-4 py-2 mb-2 sm:mb-0 sm:mr-2">
+                Order History
+              </button>
+            </>
           )}
           {isAdminLoggedIn && (
-            <Link to="/AdminDashboard" className="text-white bg-blue-500 rounded-lg px-4 py-2 mb-2 sm:mb-0 sm:mr-2">
+            <Link
+              to="/AdminDashboard"
+              className="text-white bg-blue-500 rounded-lg px-4 py-2 mb-2 sm:mb-0 sm:mr-2"
+            >
               Admin DashBoard
             </Link>
           )}
@@ -117,7 +133,7 @@ const NavBar = () => {
       )}
 
       {!isUserLoggedIn && !isAdminLoggedIn && (
-        <div className="space-y-4 sm:space-x-4 sm:space-y-0">
+        <div className="m-4 space-y-4 sm:space-x-4 sm:space-y-0">
           <div className="space-y-4 sm:space-y-0">
             <Link to="/userLogin">
               <button className="text-white m-2 bg-indigo-500 rounded-lg px-4 py-2 sm:m-2">

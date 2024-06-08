@@ -8,12 +8,18 @@ import NavBar from '../components/NavBar';
 import HomeProducts from '../components/HomeProducts';
 const Home = () => {
   return (
-    <div>
-        <NavBar/>
-        <CategoryIcon/>
-        <Hero/>
-        <HomeProducts/>
-        <Footer/>
+    <div className="flex flex-col min-h-screen">
+      <header>
+        <NavBar />
+      </header>
+      <main className="flex-grow">
+        <CategoryIcon />
+        <Hero />
+        <HomeProducts />
+      </main>
+      <footer className="mt-auto">
+        <Footer />
+      </footer>
     </div>
   )
 }

@@ -4,92 +4,6 @@ import { FcPrevious, FcNext } from "react-icons/fc";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchProducts } from "../redux/slices/productSlice";
 
-const products = [
-  {
-    id: 1,
-    name: "Product 1",
-    price: "$19.99",
-    image: "product1.jpg",
-  },
-  {
-    id: 2,
-    name: "Product 2",
-    price: "$29.99",
-    image: "product2.jpg",
-  },
-  {
-    id: 3,
-    name: "Product 3",
-    price: "$39.99",
-    image: "product3.jpg",
-  },
-  {
-    id: 4,
-    name: "Product 4",
-    price: "$49.99",
-    image: "product4.jpg",
-  },
-  {
-    id: 5,
-    name: "Product 5",
-    price: "$59.99",
-    image: "product5.jpg",
-  },
-  {
-    id: 6,
-    name: "Product 5",
-    price: "$59.99",
-    image: "product5.jpg",
-  },
-  {
-    id: 7,
-    name: "Product 5",
-    price: "$59.99",
-    image: "product5.jpg",
-  },
-  {
-    id: 8,
-    name: "Product 5",
-    price: "$59.99",
-    image: "product5.jpg",
-  },
-  {
-    id: 8,
-    name: "Product 5",
-    price: "$59.99",
-    image: "product5.jpg",
-  },
-  {
-    id: 8,
-    name: "Product 5",
-    price: "$59.99",
-    image: "product5.jpg",
-  },
-  {
-    id: 8,
-    name: "Product 5",
-    price: "$59.99",
-    image: "product5.jpg",
-  },
-  {
-    id: 8,
-    name: "Product 5",
-    price: "$59.99",
-    image: "product5.jpg",
-  },
-  {
-    id: 8,
-    name: "Product 5",
-    price: "$59.99",
-    image: "product5.jpg",
-  },
-  {
-    id: 8,
-    name: "Product 5",
-    price: "$59.99",
-    image: "product5.jpg",
-  },
-];
 
 const HomeProducts = () => {
   const dispatch = useDispatch();
@@ -145,8 +59,8 @@ const HomeProducts = () => {
 
 
   return (
-    <div className="p-10">
-      <div className="section">
+    <div className="">
+      <div className="section ">
       <div className="text-slate-500 m-4 mb-0 text-xl font-bold ">
         Hottest Deals
       </div>
