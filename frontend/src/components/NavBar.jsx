@@ -115,12 +115,21 @@ const NavBar = () => {
             </>
           )}
           {isAdminLoggedIn && (
-            <Link
+
+            <>
+                        <Link
               to="/AdminDashboard"
               className="text-white bg-blue-500 rounded-lg px-4 py-2 mb-2 sm:mb-0 sm:mr-2"
             >
               Admin DashBoard
             </Link>
+                        <Link
+              to="/addProduct"
+              className="text-white bg-green-500 rounded-lg px-4 py-2 mb-2 sm:mb-0 sm:mr-2"
+            >
+              Add Product
+            </Link>
+            </>
           )}
 
           <button

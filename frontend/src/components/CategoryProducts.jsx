@@ -89,66 +89,69 @@ const CategoryProducts = ({ category }) => {
 
   // console.log(filteredProducts)
   return (
-    <div>
-      <h4 className="text-center uppercase m-3">{category}</h4>
-      <p>{msg}</p>
-      <div className="flex flex-wrap">
-        {filteredProducts.length > 0
-          ? filteredProducts.map((product) => (
-              <div
-                className="bg-grey p-2 m-2 rounded-lg lg:bg-white-500 lg:w-72 w-32"
-                key={product.id}
-              >
-                <img
-                  src={product.proImg}
-                  alt={product.proName}
-                  className="w-full h-40 object-cover mb-4"
-                />
-                <h1 className="text-xl font-semibold mb-2">
-                  {product.proName}
-                </h1>
-                <h2 className="text-md font-semibold mb-2">
-                  {product.proDesc}
-                </h2>
-                <p>Price: Rs. {calculateTotalPrice(product.proId)}</p>
-                <div className="flex flex-between gap-10 mt-5">
-                  <button
-                    className="bg-green-400 rounded-lg px-2 py-1"
-                    onClick={() => addToCart(product.proId)}
-                  >
-                    Add to Cart
-                  </button>
+<div>
+  <h4 className="text-center uppercase m-3 text-white text-lg font-bold">{category} Category</h4>
+  <p>{msg}</p>
+  <div className="flex flex-wrap justify-start text-blue-gray-900">
+    {filteredProducts.length > 0 ? (
+      filteredProducts.map((product) => (
+        <div
+          className="bg-white p-4 m-3 rounded-lg shadow-lg w-full sm:w-60 md:w-72"
+          key={product.id}
+        >
+          <img
+            src={product.proImg || 'https://via.placeholder.com/150'}
+            alt={product.proName}
+            className="w-full h-40 object-cover mb-4 rounded-lg"
+          />
+          <h1 className="text-lg font-semibold  mb-2">
+            {product.proName}
+          </h1>
+          <h2 className="text-md  mb-2">
+            {product.proDesc}
+          </h2>
+          <p className=" font-medium">Price: Rs. {calculateTotalPrice(product.proId)}</p>
+          <div className="flex justify-between items-center mt-4">
+            <button
+              className="bg-green-400 text-white rounded-lg px-4 py-2 hover:bg-blue-600"
+              onClick={() => addToCart(product.proId)}
+            >
+              Add to Cart
+            </button>
 
-                  {product.proQty === 0
-                    ? "Out of Stock"
-                    : 
-                    <select
-                      className="text-black"
-                        name=""
-                        id=""
-                        value={selectedQuantities[product.proId] || 1} // Set value from selectedQuantities state
-                        onChange={(e) => {
-                          handleOnChange(product.proId, e);
-                        }}
-                      >
-                        {Array(product.proQty)
-                          .fill()
-                          .map((_, index) => {
-                            const optionValue = index + 1;
-                            return (
-                              <option key={index} value={optionValue}>
-                                {optionValue}
-                              </option>
-                            );
-                          })}
-                      </select>
-                      }
-                </div>
-              </div>
-            ))
-          :  `No products present in ${category} category`}
-      </div>
-    </div>
+            {product.proQty === 0 ? (
+              <span className="text-red-600">Out of Stock</span>
+            ) : (
+              <select
+                className="text-black border rounded-lg px-2 py-1"
+                name=""
+                id=""
+                value={selectedQuantities[product.proId] || 1}
+                onChange={(e) => {
+                  handleOnChange(product.proId, e);
+                }}
+              >
+                {Array(product.proQty)
+                  .fill()
+                  .map((_, index) => {
+                    const optionValue = index + 1;
+                    return (
+                      <option key={index} value={optionValue}>
+                        {optionValue}
+                      </option>
+                    );
+                  })}
+              </select>
+            )}
+          </div>
+        </div>
+      ))
+    ) : (
+      `No products present in ${category} category`
+    )}
+  </div>
+</div>
+
   );
 };
 

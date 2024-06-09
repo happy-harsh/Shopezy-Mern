@@ -11,11 +11,11 @@ const AdminDashboard = () => {
     (state) => state.adminAuthCheck.isAdminAuth
   );
   return (
-    <div>
+    <>
       <NavBar/>
       {isAdminLoggedIn && 
       <AdminProducts/> }
-    </div>
+    </>
   )
 }
 

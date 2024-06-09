@@ -13,6 +13,7 @@ import Household from "./categories/Household";
 import Medicine from "./categories/Medicine";
 import Fashion from "./categories/Fashion";
 import Beauty from "./categories/Beauty";
+import AddProduct from "./screens/AddProduct";
 // import Medicine from "./components/categories/Medicine";
 
 function App() {
@@ -31,6 +32,7 @@ function App() {
           <Route exact path="/household" element={<Household/>} />
           <Route exact path="/fashion" element={<Fashion/>} />
           <Route exact path="/beauty" element={<Beauty/>} />
+          <Route exact path="/addProduct" element={<AddProduct/>} />
           
         </Routes>
 

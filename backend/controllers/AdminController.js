@@ -4,6 +4,8 @@ const AdminModel = require("../models/AdminModel");
 require("dotenv").config();
 const SecureKey = process.env.SK;
 
+const cookieDomain = process.env.COOKIE_DOMAIN;
+
 const handleAdminCreation = async (req, res) => {
   try {
     const { name, email, password, adminKey } = req.body;
@@ -72,7 +74,7 @@ const handleAdminLogin = async (req, res) => {
       httpOnly: true,
       sameSite: "None",
       secure: true,
-      domain: "https://shopezy-mern-frontend.vercel.app/"
+      domain: cookieDomain
     }
   );
 

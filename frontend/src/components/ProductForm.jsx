@@ -2,11 +2,14 @@ import axios from "axios";
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { fetchProducts } from "../redux/slices/productSlice";
+import { useNavigate } from "react-router-dom";
 
 const ProductForm = ({ isAddingProduct, setIsAddingProduct }) => {
   const dispatch = useDispatch();
   // for dropdown selection of quantity
   const [selectedQty, setSelectedQty] = useState(1);
+
+  const navigate = useNavigate()
 
   const [formData, setFormData] = useState({
     proImg: "",
@@ -44,6 +47,7 @@ const ProductForm = ({ isAddingProduct, setIsAddingProduct }) => {
       .then((res) => {
         console.log(res.data);
         dispatch(fetchProducts());
+        alert("Product added successfully")
         handleCancel(); // Reset form and close
       })
       .catch((err) => {
@@ -52,7 +56,7 @@ const ProductForm = ({ isAddingProduct, setIsAddingProduct }) => {
   };
 
   const handleCancel = () => {
-    setIsAddingProduct(false);
+    // setIsAddingProduct(false);
     setFormData({
       proImg: "",
       proName: "",
@@ -63,11 +67,12 @@ const ProductForm = ({ isAddingProduct, setIsAddingProduct }) => {
       price: 0,
     });
     setSelectedQty(1);
+    navigate("/AdminDashboard")
   };
 
   return (
-<div className="max-w-lg mx-auto p-4 bg-gradient-to-r from-yellow-100 via-yellow-200 to-yellow-300 text-black rounded-lg shadow-2xl transform transition-all duration-300 hover:scale-105">
-  {isAddingProduct && (
+<div className="w-1/4 mx-auto m-4 p-2 bg-gray-50 text-black rounded-lg ">
+  { (
     <>
       <h2 className="text-3xl font-extrabold mb-4 text-[#0c5273]">Add Product</h2>
       <form className="space-y-6" onSubmit={handleAddProduct}>
@@ -114,27 +119,55 @@ const ProductForm = ({ isAddingProduct, setIsAddingProduct }) => {
           <label className="block text-[#0c5273] mb-2 font-semibold" htmlFor="proCat">
             Category:
           </label>
-          <input
+          {/* <input
             className="w-full px-4 py-2 border border-[#0c5273] rounded-md focus:outline-none focus:ring-2 focus:ring-[#0c5273] transition duration-200"
             type="text"
             id="proCat"
             name="proCat"
             value={formData.proCat}
             onChange={handleChange}
-          />
+          /> */}
+                    <select
+            className="w-full px-4 py-2 border border-[#0c5273] rounded-md focus:outline-none focus:ring-2 focus:ring-[#0c5273] transition duration-200"
+            id="proCat"
+            name="proCat"
+            value={formData.proCat}
+            onChange={handleChange}
+          >
+            <option value="">Select a category</option>
+            <option value="electronics">Electronics</option>
+            <option value="medicine">Medicine</option>
+            <option value="fashion">Fashion</option>
+            <option value="beauty">Beauty</option>
+            <option value="household">Household</option>
+          </select>
         </div>
         <div>
           <label className="block text-[#0c5273] mb-2 font-semibold" htmlFor="proTag">
             Tag:
           </label>
-          <input
+          {/* <input
             className="w-full px-4 py-2 border border-[#0c5273] rounded-md focus:outline-none focus:ring-2 focus:ring-[#0c5273] transition duration-200"
             type="text"
             id="proTag"
             name="proTag"
             value={formData.proTag}
             onChange={handleChange}
-          />
+          /> */}
+                              <select
+            className="w-full px-4 py-2 border border-[#0c5273] rounded-md focus:outline-none focus:ring-2 focus:ring-[#0c5273] transition duration-200"
+            id="proTag"
+            name="proTag"
+            value={formData.proTag}
+            onChange={handleChange}
+          >
+            <option value="">Select a Tag</option>
+            <option value="topTen">Top 10</option>
+            <option value="topFive">Top 5</option>
+            <option value="fiftyOff">50% off</option>
+            <option value="twentyOff">20% off</option>
+            <option value="tenOff">10% off</option>
+          </select>
         </div>
         <div>
           <label className="block text-[#0c5273] mb-2 font-semibold" htmlFor="quantity">
@@ -171,13 +204,13 @@ const ProductForm = ({ isAddingProduct, setIsAddingProduct }) => {
         </div>
         <div className="flex justify-between">
           <button
-            className="bg-gradient-to-r from-[#0c5273] to-green-500 text-white px-4 py-2 m-3 rounded-md shadow-md hover:shadow-lg transition duration-300"
+            className=" bg-green-500 text-white px-4 py-2 m-3 rounded-md shadow-md hover:shadow-lg transition duration-300"
             type="submit"
           >
             Confirm Add Product
           </button>
           <button
-            className="bg-gradient-to-r from-[#0c5273] to-red-500 text-white px-4 py-2 m-3 rounded-md shadow-md hover:shadow-lg transition duration-300"
+            className=" bg-red-500 text-white px-4 py-2 m-3 rounded-md shadow-md hover:shadow-lg transition duration-300"
             type="button"
             onClick={handleCancel}
           >

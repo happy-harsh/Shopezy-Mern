@@ -15,11 +15,13 @@ const app = express();
 require("dotenv").config()
 const port =  process.env.PORT
 const uri =  process.env.URI
+const cookieDomainOrigin = process.env.COOKIE_DOMAIN
 
 // middleware
 const corsOptions = {
   // origin:"http://localhost:5173",
-  origin:"https://shopezy-mern-frontend.vercel.app",
+  origin:cookieDomainOrigin,
+  // origin:"https://shopezy-mern-frontend.vercel.app",
   credentials:true,
   
 }

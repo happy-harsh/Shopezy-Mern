@@ -3,7 +3,10 @@ const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 require("dotenv").config();
 const SecureKey = process.env.SK;
+require('dotenv').config();
 
+
+const cookieDomain = process.env.COOKIE_DOMAIN;
 const handleSignupUser = async (req, res) => {
   try {
     const { name, location, email, password } = req.body;
@@ -65,7 +68,7 @@ const handleLoginUser = async (req, res) => {
       httpOnly: true,
       sameSite: "none",
       secure: true,
-      domain: "https://shopezy-mern-frontend.vercel.app/"
+      domain:cookieDomain
     }
   );
 
@@ -95,7 +98,7 @@ const handleLogoutUser = (req,res) => {
             httpOnly: true,
             sameSite: "none",
             secure: true,
-            domain: "https://shopezy-mern-frontend.vercel.app/"
+            domain: cookieDomain
           }
           );
           res.status(200).send({ message: "Logout successful" });

@@ -74,64 +74,63 @@ const UserProducts = () => {
   return (
     <>
       {isUserLoggedIn ? (
-        <div>
-          <div className="flex relative">
-            <div className="ml-14 lg:ml-32">
-              <div className="flex flex-wrap">
-                {data &&
-                  data.map((product) => (
-                    <div
-                      className="bg-grey p-2 m-2 rounded-lg lg:bg-white-500 lg:w-72 w-32"
-                      key={product.id}
-                    >
-                      <img
-                        src={product.proImg}
-                        alt={product.proName}
-                        className="w-full h-40 object-cover mb-4"
-                      />
-                      <h1 className="text-xl font-semibold mb-2">{product.proName}</h1>
-                      <h2 className="text-md font-semibold mb-2">
-                        {product.proDesc}
-                      </h2>
-                      <p>Price: Rs. {calculateTotalPrice(product.proId)}</p>
-                      <div className="flex flex-between gap-10 mt-5">
-                      <button
-                        className="bg-green-400 rounded-lg px-2 py-1"
-                        onClick={() => addToCart(product.proId)}
-                      >
-                        Add to Cart
-                      </button>
-                      {product.proQty === 0 ? (
-                        "Out of Stock"
-                      ) : (
-                        <select
-                        className="text-black"
-                          name=""
-                          id=""
-                          value={selectedQuantities[product.proId] || 1} // Set value from selectedQuantities state
-                          onChange={(e) => {
-                            handleOnChange(product.proId, e);
-                          }}
-                        >
-                          {Array(product.proQty)
-                            .fill()
-                            .map((_, index) => {
-                              const optionValue = index + 1;
-                              return (
-                                <option key={index} value={optionValue}>
-                                  {optionValue}
-                                </option>
-                              );
-                            })}
-                        </select>
-                      )}
-                      </div>
-                    </div>
-                  ))}
-              </div>
+
+<div className="container mx-auto px-4 text-blue-gray-900">
+  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+    {data &&
+      data.map((product) => (
+        <div
+          className="bg-white shadow-lg rounded-lg overflow-hidden hover:shadow-2xl transition-shadow duration-300"
+          key={product.id}
+        >
+          <img
+            src={product.proImg}
+            alt={product.proName}
+            className="w-full h-48 object-cover"
+          />
+          <div className="p-4">
+            <h1 className="text-xl font-semibold mb-2">{product.proName}</h1>
+            <h2 className="text-md font-medium text-gray-600 mb-2">
+              {product.proDesc}
+            </h2>
+            <p className="text-lg font-bold mb-4">Price: Rs. {calculateTotalPrice(product.proId)}</p>
+            <div className="flex items-center justify-between">
+              <button
+                className="bg-green-400 text-white rounded-lg px-4 py-2 hover:bg-green-500 transition-colors duration-300"
+                onClick={() => addToCart(product.proId)}
+              >
+                Add to Cart
+              </button>
+              {product.proQty === 0 ? (
+                <span className="text-red-500">Out of Stock</span>
+              ) : (
+                <select
+                  className="text-black border border-gray-300 rounded-lg px-2 py-1"
+                  value={selectedQuantities[product.proId] || 1}
+                  onChange={(e) => {
+                    handleOnChange(product.proId, e);
+                  }}
+                >
+                  {Array(product.proQty)
+                    .fill()
+                    .map((_, index) => {
+                      const optionValue = index + 1;
+                      return (
+                        <option key={index} value={optionValue}>
+                          {optionValue}
+                        </option>
+                      );
+                    })}
+                </select>
+              )}
             </div>
           </div>
         </div>
+      ))}
+  </div>
+</div>
+
+
       ) : (
         "Please Login to see all the products"
       )}

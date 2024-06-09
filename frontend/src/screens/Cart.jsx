@@ -117,51 +117,57 @@ const Cart = () => {
   return (
     <>
       <NavBar />
-      {!cartData || cartData.items.length === 0 ? (
-        <p>Your cart is empty.</p>
-      ) : (
-        cartData.items.map((product) => (
-          <div
-            className="bg-white shadow-md rounded-lg p-4 mb-4"
-            key={product.productId}
-          >
-            <div className="flex items-center justify-between mb-2">
-              <h2 className="text-xl font-semibold">{product.proName}</h2>
-            </div>
-            <div className="flex items-center justify-around mb-2">
-              <button
-                onClick={() => {
-                  handleDec(product.proId, product.proFinalPrice);
-                }}
-              >
-                -
-              </button>
-              <p className="text-gray-700">Quantity: {product.proQty}</p>
-              {exceed ? (
-                <>
+      <div className="flex ">
+        {!cartData || cartData.items.length === 0 ? (
+          <p className="m-4">Your cart is empty.</p>
+        ) : (
+          cartData.items.map((product) => (
+            <div
+              className="bg-white shadow-md rounded-lg p-4 m-4 text-gray-700 w-1/4 flex flex-col gap-4"
+              key={product.productId}
+            >
+              <div className=" mb-2">
+                <h2 className="text-xl font-semibold">{product.proName}</h2>
+              </div>
+              <div className=" mb-2">
+                <div className="flex justify-around">
                   <button
                     onClick={() => {
-                      handleInc(product.proId, product.proFinalPrice);
+                      handleDec(product.proId, product.proFinalPrice);
                     }}
                   >
-                    +
+                    -
                   </button>
-                </>
-              ) : (
-                <>no more stock</>
-              )}
-              <p className="text-gray-700">Price: ${product.proFinalPrice}</p>
+                  <p className=""> {product.proQty}</p>
+                  {exceed ? (
+                    <>
+                      <button
+                        onClick={() => {
+                          handleInc(product.proId, product.proFinalPrice);
+                        }}
+                      >
+                        +
+                      </button>
+                    </>
+                  ) : (
+                    <>no more stock</>
+                  )}
+                </div>
+              </div>
+              <div className="flex justify-around">
+                <p className="text-gray-700">Price: ${product.proFinalPrice}</p>
+                <button
+                  className="text-white bg-red-500 rounded-lg px-4 py-2"
+                  onClick={() => handleRemoveFromCart(product.proId)}
+                >
+                  Remove
+                </button>
+              </div>
             </div>
-            <button
-              className="text-white bg-red-500 rounded-lg px-4 py-2"
-              onClick={() => handleRemoveFromCart(product.proId)}
-            >
-              remove from cart
-            </button>
-          </div>
-        ))
-      )}
-      Cart Total: Rs. {totalPrice}/-
+          ))
+        )}
+      </div>
+      <h3 className="m-4">Cart Total Rs. {totalPrice}/-</h3>
     </>
   );
 };
