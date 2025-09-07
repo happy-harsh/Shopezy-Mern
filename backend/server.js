@@ -31,6 +31,10 @@ app.use(bodyParser.json());
 app.use(cors(corsOptions));
 
 // routes
+app.route('/',(req,res)=>{
+  return res.status(200).json({message:"Welcome to shopezy ecommerce"});
+
+});
 app.use(userRouter);
 app.use(productRouter);
 app.use(adminRouter);
