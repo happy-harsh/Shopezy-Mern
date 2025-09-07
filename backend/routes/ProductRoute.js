@@ -6,7 +6,7 @@ const { checkAdminRole } = require("../middlewares/checkAdminRole");
 
 const productRouter = express.Router();
 // admin 
-productRouter.get('/api/insertDoc',authCheck,handleInsertDoc)
+productRouter.get('/api/insertDoc',handleInsertDoc)
 
 // admin
 productRouter.post('/api/addProduct',authCheck,checkAdminRole,handleAddProduct)
